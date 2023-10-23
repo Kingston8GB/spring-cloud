@@ -1,0 +1,27 @@
+server:
+  port: 8006
+
+spring:
+  application:
+    name: consul-provider-payment
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
+    driver-class-name: com.mysql.cj.jdbc.Driver             # mysql驱动包 com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/atguigu_cloud?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    ####consul注册中心地址
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        hostname: 127.0.0.1
+        service-name: ${spring.application.name}
+        instance-id: payment8006
+
+mybatis-plus:
+  type-aliases-package: org.kirin.pojo
+  global-config:
+    db-config:
+      id-type: auto #主键策略自增长
